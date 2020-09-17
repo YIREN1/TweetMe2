@@ -1,0 +1,1 @@
+curl -X POST http://127.0.0.1:8000/api/tweets/create/ -d 'content=kasdf' -b "sessionid=opxnf7470000xcyes04f8a9apepuv6x5" -b 'csrftoken=sl1LZML2iIz5NiZupt0nvinBMbWK8NYbpPsqs6St4PCZzTBEOaFTCpCnVcFvibNf'
