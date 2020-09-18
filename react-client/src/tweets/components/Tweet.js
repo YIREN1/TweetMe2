@@ -5,7 +5,14 @@ import { motion } from 'framer-motion';
 export default function Tweet({ tweet = null, hideActions, isRetweet, retweeter, setTweets }) {
   const [actionTweet, setActionTweet] = useState(tweet);
   let className = 'col-10 mx-auto col-md-6';
-  className = isRetweet === true ? `${className} p-2 border rounded` : className;
+  // border
+  className = isRetweet === true ? `${className} p-2 rounded` : className;
+  const isDetail = false;
+  const handleLink = (event) => {
+    event.preventDefault();
+    window.location.href = `/${tweet.id}`;
+  };
+
   const handlePerformAction = (newActionTweet, status) => {
     if (status === 200) {
       setActionTweet(newActionTweet);
@@ -56,6 +63,11 @@ export default function Tweet({ tweet = null, hideActions, isRetweet, retweeter,
                   action={{ type: 'retweet', display: 'Retweet' }}
                 />
               </React.Fragment>
+            )}
+            {isDetail ? null : (
+              <button className='btn btn-outline-primary btn-sm' onClick={handleLink}>
+                View
+              </button>
             )}
           </div>
         </div>

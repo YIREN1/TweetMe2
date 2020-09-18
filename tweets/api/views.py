@@ -15,7 +15,7 @@ from ..serializers import TweetSerializer, TweetCreateSerializer, TweetActionSer
 
 
 @api_view(["POST"])
-# @permission_classes([IsAuthenticated]) # REST API course
+@permission_classes([IsAuthenticated]) # REST API course
 def tweet_create_view(request, *args, **kwargs):
     serializer = TweetCreateSerializer(data=request.data)
 
@@ -87,11 +87,12 @@ def tweet_detail_view(request, tweet_id, *args, **kwargs):
 
 
 @api_view(["GET"])
+@permission_classes([IsAuthenticated])
 def tweet_list_view(request, *args, **kwargs):
-
+    user = request.user
     qs = Tweet.objects.all()
     serializer = TweetSerializer(qs, many=True)
     # username = request.GET.get('username')  # ?username=Justin
-    # if username is not None:
-    #     qs = qs.by_username(username)
+    # if user is not None:
+        # qs = qs.by_username(user)
     return Response(serializer.data)
